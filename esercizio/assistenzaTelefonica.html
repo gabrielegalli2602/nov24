@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+	
+<head>
+	
+	<meta charset="UTF-8">
+	<title>Modulo richiesta di assistenza</title>
+	
+	<style>
+		
+		#contenuto {
+			
+			width: 900px;
+			height: auto;
+			
+			font-family: Tahoma;
+			margin: 20px auto;
+			
+		}
+		
+		form {
+			
+			border: 1px solid black;
+			padding: 20px;
+			
+		}
+		
+		.legenda {
+			
+			text-align: center;
+			
+		}
+		
+		fieldset {
+			
+			margin: 10px 0px;
+			
+		}
+		
+		#buttSUB {
+			
+			width: 140px;
+			height: auto;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: auto;
+			margin-right: auto;
+			float: left;
+			
+		}
+		
+		#invia {
+			
+			border: 1px solid black;
+			border-radius: 5px;
+			
+		}
+		
+		#invia:hover {
+			
+			background-color: gray;
+			color: white;
+			border: 1px solid darkgray;
+			
+		}
+		
+		#buttRES {
+			
+			width: 75px;
+			height: auto;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: auto;
+			margin-right: auto;
+			float: right;
+			
+		}
+		
+		#reset {
+			
+			border: 1px solid black;
+			border-radius: 5px;
+			
+		}
+		
+		#reset:hover {
+			
+			background-color: gray;
+			color: white;
+			border: 1px solid darkgray;
+			
+		}
+		
+		#formFoot {
+			
+			width: 800px;
+			height: 30px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: auto;
+			margin-right: auto;
+			
+		}
+		
+	</style>
+	
+</head>
+
+<body>
+	
+	<div id="contenuto">
+	
+		<form id="modulo" name="modulo" action="#" method="post">
+			
+			<h2>Modullo di assistenza telefonica GalliCorporation:</h2>
+			
+			<fieldset>
+				
+				<legend class="legenda">Dati anagrafici del richiedente</legend>
+				
+				<p>Nome: <input type="text" id="nome" name="nome" placeholder="es. Mario" /></p>
+				<p>Cognome: <input type="text" id="cognome" name="cognome" placeholder="es. Rossi" /></p>
+				<p>Codice fiscale: <input type="text" id="CF" name="CF" size="16" minlength="16" maxlength="16" /></p>
+				<p>Città: <select id="residenza" name="residenza">
+					
+							<script>
+								
+								document.write("<option selected disabled>Città di residenza</option>")
+								
+								const capoluoghi = ["Ancona", "Aosta", "Bari", "Bologna", "Cagliari", "Campobasso", "Catanzaro", "Firenze", "Genova", "L'Aquila", "Milano", "Napoli", "Palermo", "Perugia", "Potenza", "Roma", "Torino", "Trento", "Trieste", "Venezia"];
+								
+								for (i=0; i<capoluoghi.length; i++) {
+									
+									let valore=i+1;
+									
+									document.write("<option value='"+valore+"'>"+capoluoghi[i]+"</option>");
+									
+								}
+							
+							</script>
+							
+						</select>
+				</p>
+				
+			</fieldset>
+			
+			<fieldset>
+				
+				<legend class="legenda">Modello/Dati del cellulare da riparare</legend>
+				
+				<p>Gestore telefonico: <br/>
+					<input type="radio" name="gestore" value="tim" id="tim" /> TIM<br />
+					<input type="radio" name="gestore" value="vodafone" id="vodafone" /> VODAFONE<br />
+					<input type="radio" name="gestore" value="windtre" id="windtre" /> WIND-TRE<br />
+					<input type="radio" name="gestore" value="iliad" id="iliad" /> ILIAD<br />
+					<input type="radio" name="gestore" value="altro" id="altro" /> Altro <input type="text" name="altroGestore" disabled />
+				</p>
+				
+				<p>Numero di telefono del dispositivo: <input type="text" id="numeroCEL" name="numeroCEL" size="8" minlength="9" maxlength="11"/></p>
+				<p>Marca del dispositivo:
+					<select id="marca" name="marca">
+						<option selected disabled>MARCA</option>
+					
+							<script>
+													
+								const marche = ["Apple", "Samsung", "Xiaomi", "Huawei", "Google", "OnePlus", "OPPO", "Vivo", "Realme", "Motorola", "Nokia", "Sony", "Honor", "ASUS", "Nothing", "TCL", "ZTE", "Lenovo", "Fairphone", "Doro"];
+								
+								for (i=0; i<marche.length; i++) {
+														
+									let valore=i+1;
+									document.write("<option value='"+valore+"'>"+marche[i]+"</option>");
+														
+								}
+												
+							</script>
+					
+					</select>
+				</p>
+				<p>Modello del dispositivo:
+					<select id="modello" name="modello"></select>
+				</p>
+				
+			</fieldset>
+			
+			<fieldset>
+				
+				<legend class="legenda">Problema evidenziato e recapito telefonico</legend>
+				
+				<p>Problema riscontrato:<br/>
+					<textarea cols="100" rows="10" style="resize:none;" maxlength="1000" placeholder="Fornire una breve descrizione del problema riscontrato (massimo 1000 caratteri):"></textarea></p>
+				
+				<p>Recapito telefonico: <input type="text" id="numeroTEL" name="numeroTEL" size="8" minlength="9" maxlength="11"/></p>
+				<p>N.B: in assenza di un recapito telefonico, la ricevuta verrà compilata con il numero cellulare del dispositivo inserito in precedenza.</p>
+				
+			</fieldset>
+			
+			<div id="formFoot">
+				<div id="buttSUB"><input type="button" value="RICEVUTA" id="invia" /></div>
+				<div id="buttRES"><input type="reset" value="RESETTA" id="reset" /></div>
+			</div>
+			
+		</form>
+		
+		<script>
+			
+			// controllo sui dati anagrafici richiedente
+			const richNome = document.getElementById("nome");
+			const richCogn = document.getElementById("cognome");
+			const richCF = document.getElementById("CF");
+			
+			richNome.addEventListener("keypress", checkName);
+			richCogn.addEventListener("keypress", checkSurname);
+			let nameOK = false;
+			let surnameOK = false;
+			
+			// check battitura del nome
+			function checkName(event) {
+				
+				let charCode = event.charCode;
+				if (charCode !== 0) {
+					
+					if (charCode == 13) {
+						
+						document.modulo.cognome.focus();
+						
+					}	else if (charCode>0 && charCode<65 || charCode>90 && charCode<97 || charCode>122) {
+						
+							event.preventDefault();
+							alert("Sembrerebbe che tu stia inserendo simboli speciali oppure numeri. Per favore inserire nome e/o cognome correttamente.");
+							document.modulo.nome.focus();
+						
+						}
+					
+					nameOK = true;
+					
+				}
+				
+			}
+			
+			// check battitura del cognome
+			function checkSurname(event) {
+				
+				let charCode = event.charCode;
+				if (charCode !== 0) {
+					
+					if (charCode == 13) {
+						
+						document.modulo.CF.focus();
+						
+					}	else if (charCode>0 && charCode<65 || charCode>90 && charCode<97 || charCode>122) {
+						
+							event.preventDefault();
+							alert("Sembrerebbe che tu stia inserendo simboli speciali oppure numeri. Per favore inserire nome e/o cognome correttamente.");
+							document.modulo.cognome.focus();
+						
+						}
+						
+					surnameOK = true;
+					
+				}
+				
+			}
+			
+			// check battitura del codice fiscale
+			richCF.addEventListener("keypress", checkCF);
+			let cfOK = false;
+			
+			function checkCF(event) {
+				
+				let charCode = event.charCode;
+				if (charCode !== 0) {
+					
+					if (charCode == 13) {
+						
+						document.modulo.residenza.focus();
+						
+					}	else if (charCode>0 && charCode<48 || charCode>57 && charCode<65 || charCode>90) {
+						
+							event.preventDefault();
+							alert("Sembrerebbe che tu stia inserendo simboli speciali oppure lettere minuscole. Per favore inserire il codice fiscale nel formato corretto.");
+							document.modulo.CF.focus();
+						
+					}
+					
+					cfOK = true;
+					
+				}
+				
+			}
+			
+			// check sulla residenza selezionata
+			document.getElementById("residenza").addEventListener("change", checkRES);
+			let resOK = false;
+			
+			function checkRES() {
+				
+				const RES = document.getElementById("residenza").value;
+				
+				if (RES !== 0) {
+					
+					resOK = true;
+					
+				}
+				
+			}
+			
+			//caricamento dei modelli della marca selezionati
+			document.getElementById("marca").addEventListener("change", function() {
+				
+				const listaModelli = {
+					
+					1: ["iPhone 16", "iPhone 16Plus", "iPhone 16Pro", "iPhone 16ProMax", "iPhone 16e"],
+					2: ["Galaxy S25", "Galaxy S25+", "Galaxy S25 Ultra", "Galaxy Z Fold7", "Galaxy Z Flip7"],
+					3: ["Xiaomi 15", "Xiaomi 15 Ultra", "Xiaomi 14T", "Redmi Note 14 Pro", "Redmi 14C"],
+					4: ["Pura 70", "Pura 70 Pro", "Mate 70 Pro", "Nova 13", "Nova 13 Pro"],
+					5: ["Pixel 9", "Pixel 9 Pro", "Pixel 9 Pro XL", "Pixel 9a", "Pixel 9 Pro Fold"],
+					6: ["OnePlus 13", "OnePlus 13R", "OnePlus Nord 4", "OnePlus Nord CE4", "OnePlus Open"],
+					7: ["Find X8", "Find X8 Pro", "Reno13", "Reno13 Pro", "A5 Pro"],
+					8: ["X200", "X200 Pro", "V50", "V40", "Y300"],
+					9: ["GT 7 Pro", "GT 6", "14 Pro+", "14 Pro", "C75"],
+					10: ["Edge 60 Pro", "Edge 60", "Moto G86", "Moto G56", "Razr 60 Ultra"],
+					11: ["G42", "G22", "C32", "XR21", "G60"],
+					12: ["Xperia 1 VI", "Xperia 10 VI", "Xperia 5 V", "Xperia 1 V", "Xperia 10 V"],
+					13: ["Magic7 Pro", "Magic7 Lite", "200 Pro", "200", "X9c"],
+					14: ["ROG Phone 9 Pro", "ROG Phone 9", "Zenfone 12 Ultra", "Zenfone 11 Ultra", "ROG Phone 8"],
+					15: ["Phone (3)", "Phone (3a)", "Phone (3a) Pro", "Phone (2a)", "Phone (2a) Plus"],
+					16: ["TCL 50 Pro NXTPAPER", "TCL 50 NXTPAPER", "TCL 50 SE", "TCL 50 5G", "TCL 40 NXTPAPER"],
+					17: ["Nubia Z70 Ultra", "Nubia Z60 Ultra", "Nubia Flip 2", "Blade V70", "Blade A75"],
+					18: ["Legion Y70", "K14", "K14 Plus", "K13 Pro", "K12"],
+					19: ["Fairphone 6", "Fairphone 5", "Fairphone 4", "Fairphone 3+", "Fairphone 3"],
+					20: ["Doro Aurora A30", "Doro Aurora A20", "Doro 8100", "Doro 8200", "Doro 7080"],
+					
+				};
+				
+				let marca = document.getElementById("marca").value;
+				let modelli = listaModelli[marca];
+				
+				let modello = document.getElementById("modello");
+				
+				modello.innerHTML = '<option selected disabled>MODELLO</option>';
+
+				for (i=0; i<modelli.length; i++) {
+					
+					let valore = i+1;
+					
+					modello.innerHTML += '<option value="'+valore+'" >'+modelli[i]+'</option>';
+					
+				}
+				
+			});
+			
+			
+			// verifica globale/finale di tutti i controlli
+			document.getElementById("invia").addEventListener("click", verificaGlobale);
+			
+			function verificaGlobale() {
+				
+				if (nameOK == false || surnameOK == false) {
+					
+					alert("Attenzione! Non hai inserito nome e/o cognome!");
+					
+				}	else if (cfOK == false || document.getElementById("CF").value.length<16) {
+					
+						alert("Attenzione! Il codice fiscale non è stato inserito oppure è di lunghezza errata!");
+					
+					}	else if (resOK == false) {
+						
+							alert("Attenzione! Non è stata selezionata una città di residenza!");
+						
+						}	else {
+						
+							document.modulo.submit();
+						
+						}
+				
+			}
+		
+		</script>
+	
+	</div>
+
+</body>
+
+</html>
